@@ -1,18 +1,21 @@
 language: go
 go:
-  - release
-  - tip
+- release
+- tip
 install:
-  - go get -d -t -v ./...
-  - go get -v code.google.com/p/go.tools/cmd/cover
-  - go get -v code.google.com/p/go.tools/cmd/vet
-  - go get -v github.com/GeertJohan/fgt
-  - go get -v github.com/golang/lint/golint
+- go get -d -t -v ./...
+- go get -v code.google.com/p/go.tools/cmd/cover
+- go get -v code.google.com/p/go.tools/cmd/vet
+- go get -v github.com/GeertJohan/fgt
+- go get -v github.com/golang/lint/golint
 script:
-  - export PATH=$PATH:$HOME/gopath/bin
-  - go vet
-  - fgt golint .
-  - go test -v -covermode=count -coverprofile=profile.cov
+- export PATH=$PATH:$HOME/gopath/bin
+- go vet
+- fgt golint .
+- go test -v -covermode=count -coverprofile=profile.cov
 after_success:
-  - go get -v github.com/mattn/goveralls
-  - goveralls -coverprofile=profile.cov -service=travis-ci
+- go get -v github.com/mattn/goveralls
+- goveralls -coverprofile=profile.cov -service=travis-ci
+notifications:
+  slack:
+    secure: D3Kq0wo/lSRFN8ALva6EPPnWp2OyFP86hXlqMd3Lkxbc6Rk5IohLLnveBkv0CudlrF8DZnJSfOfP+nct9E3/z7ZMN88C+3pfiifBgM4qyc8dkig3Kbzkww7VB0xZV3jjzNIg5+n2Yj0FmCcs50Y7wQoJglDnVFDTWTxLYXaabqs=
