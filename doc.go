@@ -12,7 +12,7 @@
 // For library packages, rddnet provides the ability to lookup chain parameters
 // and encoding magics when passed a *Params.  Older APIs not updated to the new
 // convention of passing a *Params may lookup the parameters for a
-// rddwire.BitcoinNet using ParamsForNet, but be aware that this usage is
+// rddwire.ReddcoinNet using ParamsForNet, but be aware that this usage is
 // deprecated and will be removed from rddnet in the future.
 //
 // For main packages, a (typically global) var may be assigned the address of

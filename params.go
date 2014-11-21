@@ -18,7 +18,7 @@ var (
 	// the overhead of creating it multiple times.
 	bigOne = big.NewInt(1)
 
-	// mainPowLimit is the highest proof of work value a Bitcoin block can
+	// mainPowLimit is the highest proof of work value a Reddcoin block can
 	// have for the main network.  It is the value 2^236 - 1.
 	mainPowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 236), bigOne)
 
@@ -41,19 +41,19 @@ var (
 // and also prevents forks from old blocks.
 //
 // Each checkpoint is selected based upon several factors.  See the
-// documentation for btcchain.IsCheckpointCandidate for details on the selection
+// documentation for rddchain.IsCheckpointCandidate for details on the selection
 // criteria.
 type Checkpoint struct {
 	Height int64
 	Hash   *rddwire.ShaHash
 }
 
-// Params defines a Bitcoin network by its parameters.  These parameters may be
-// used by Bitcoin applications to differentiate networks as well as addresses
+// Params defines a Reddcoin network by its parameters.  These parameters may be
+// used by Reddcoin applications to differentiate networks as well as addresses
 // and keys for one network from those intended for use on another network.
 type Params struct {
 	Name        string
-	Net         rddwire.BitcoinNet
+	Net         rddwire.ReddcoinNet
 	DefaultPort string
 
 	// Chain parameters
@@ -94,7 +94,7 @@ type Params struct {
 	HDCoinType uint32
 }
 
-// MainNetParams defines the network parameters for the main Bitcoin network.
+// MainNetParams defines the network parameters for the main Reddcoin network.
 var MainNetParams = Params{
 	Name:        "mainnet",
 	Net:         rddwire.MainNet,
@@ -305,10 +305,10 @@ var SimNetParams = Params{
 }
 
 var (
-	// ErrDuplicateNet describes an error where the parameters for a Bitcoin
+	// ErrDuplicateNet describes an error where the parameters for a Reddcoin
 	// network could not be set due to the network already being a standard
 	// network or previously-registered into this package.
-	ErrDuplicateNet = errors.New("duplicate Bitcoin network")
+	ErrDuplicateNet = errors.New("duplicate Reddcoin network")
 
 	// ErrUnknownHDKeyID describes an error where the provided id which
 	// is intended to identify the network for a hierarchical deterministic
@@ -317,7 +317,7 @@ var (
 )
 
 var (
-	registeredNets = map[rddwire.BitcoinNet]struct{}{
+	registeredNets = map[rddwire.ReddcoinNet]struct{}{
 		MainNetParams.Net:       struct{}{},
 		TestNet3Params.Net:      struct{}{},
 		RegressionNetParams.Net: struct{}{},
@@ -344,7 +344,7 @@ var (
 	}
 )
 
-// Register registers the network parameters for a Bitcoin network.  This may
+// Register registers the network parameters for a Reddcoin network.  This may
 // error with ErrDuplicateNet if the network is already registered (either
 // due to a previous Register call, or the network being one of the default
 // networks).
