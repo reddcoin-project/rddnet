@@ -1,4 +1,4 @@
-// Package btcnet defines the network parameters for the three standard Bitcoin
+// Package rddnet defines the network parameters for the three standard Bitcoin
 // networks and provides the ability for callers to define their own custom
 // Bitcoin networks.
 //
@@ -9,11 +9,11 @@
 // handle errors where input intended for one network is used on an application
 // instance running on a different network.
 //
-// For library packages, btcnet provides the ability to lookup chain parameters
+// For library packages, rddnet provides the ability to lookup chain parameters
 // and encoding magics when passed a *Params.  Older APIs not updated to the new
 // convention of passing a *Params may lookup the parameters for a
-// btcwire.BitcoinNet using ParamsForNet, but be aware that this usage is
-// deprecated and will be removed from btcnet in the future.
+// rddwire.BitcoinNet using ParamsForNet, but be aware that this usage is
+// deprecated and will be removed from rddnet in the future.
 //
 // For main packages, a (typically global) var may be assigned the address of
 // one of the standard Param vars for use as the application's "active" network.
@@ -27,28 +27,28 @@
 //          "fmt"
 //          "log"
 //
-//          "github.com/conformal/btcnet"
-//          "github.com/conformal/btcutil"
+//          "github.com/reddcoin-project/rddnet"
+//          "github.com/reddcoin-project/rddutil"
 //  )
 //
 //  var testnet = flag.Bool("testnet", false, "operate on the testnet Bitcoin network")
 //
 //  // By default (without -testnet), use mainnet.
-//  var netParams = &btcnet.MainNetParams
+//  var netParams = &rddnet.MainNetParams
 //
 //  func main() {
 //          flag.Parse()
 //
 //          // Modify active network parameters if operating on testnet.
 //          if *testnet {
-//                  netParams = &btcnet.TestNet3Params
+//                  netParams = &rddnet.TestNet3Params
 //          }
 //
 //          // later...
 //
 //          // Create and print new payment address, specific to the active network.
 //          pubKeyHash := make([]byte, 20)
-//          addr, err := btcutil.NewAddressPubKeyHash(pubKeyHash, netParams)
+//          addr, err := rddutil.NewAddressPubKeyHash(pubKeyHash, netParams)
 //          if err != nil {
 //                  log.Fatal(err)
 //          }
@@ -60,4 +60,4 @@
 // non-standard network.  As a general rule of thumb, all network parameters
 // should be unique to the network, but parameter collisions can still occur
 // (unfortunately, this is the case with regtest and testnet3 sharing magics).
-package btcnet
+package rddnet

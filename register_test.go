@@ -1,11 +1,11 @@
-package btcnet_test
+package rddnet_test
 
 import (
 	"bytes"
 	"reflect"
 	"testing"
 
-	. "github.com/conformal/btcnet"
+	. "github.com/reddcoin-project/rddnet"
 )
 
 // Define some of the required parameters for a user-registered

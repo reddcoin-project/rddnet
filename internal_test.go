@@ -1,4 +1,4 @@
-package btcnet
+package rddnet
 
 import (
 	"testing"

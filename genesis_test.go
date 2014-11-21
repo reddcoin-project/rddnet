@@ -2,13 +2,13 @@
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
-package btcnet_test
+package rddnet_test
 
 import (
 	"bytes"
 	"testing"
 
-	"github.com/conformal/btcnet"
+	"github.com/reddcoin-project/rddnet"
 	"github.com/davecgh/go-spew/spew"
 )
 
@@ -17,7 +17,7 @@ import (
 func TestGenesisBlock(t *testing.T) {
 	// Encode the genesis block to raw bytes.
 	var buf bytes.Buffer
-	err := btcnet.MainNetParams.GenesisBlock.Serialize(&buf)
+	err := rddnet.MainNetParams.GenesisBlock.Serialize(&buf)
 	if err != nil {
 		t.Fatalf("TestGenesisBlock: %v", err)
 	}
@@ -30,14 +30,14 @@ func TestGenesisBlock(t *testing.T) {
 	}
 
 	// Check hash of the block against expected hash.
-	hash, err := btcnet.MainNetParams.GenesisBlock.BlockSha()
+	hash, err := rddnet.MainNetParams.GenesisBlock.BlockSha()
 	if err != nil {
 		t.Fatalf("BlockSha: %v", err)
 	}
-	if !btcnet.MainNetParams.GenesisHash.IsEqual(&hash) {
+	if !rddnet.MainNetParams.GenesisHash.IsEqual(&hash) {
 		t.Fatalf("TestGenesisBlock: Genesis block hash does not "+
 			"appear valid - got %v, want %v", spew.Sdump(hash),
-			spew.Sdump(btcnet.MainNetParams.GenesisHash))
+			spew.Sdump(rddnet.MainNetParams.GenesisHash))
 	}
 }
 
@@ -46,7 +46,7 @@ func TestGenesisBlock(t *testing.T) {
 func TestRegTestGenesisBlock(t *testing.T) {
 	// Encode the genesis block to raw bytes.
 	var buf bytes.Buffer
-	err := btcnet.RegressionNetParams.GenesisBlock.Serialize(&buf)
+	err := rddnet.RegressionNetParams.GenesisBlock.Serialize(&buf)
 	if err != nil {
 		t.Fatalf("TestRegTestGenesisBlock: %v", err)
 	}
@@ -60,14 +60,14 @@ func TestRegTestGenesisBlock(t *testing.T) {
 	}
 
 	// Check hash of the block against expected hash.
-	hash, err := btcnet.RegressionNetParams.GenesisBlock.BlockSha()
+	hash, err := rddnet.RegressionNetParams.GenesisBlock.BlockSha()
 	if err != nil {
 		t.Errorf("BlockSha: %v", err)
 	}
-	if !btcnet.RegressionNetParams.GenesisHash.IsEqual(&hash) {
+	if !rddnet.RegressionNetParams.GenesisHash.IsEqual(&hash) {
 		t.Fatalf("TestRegTestGenesisBlock: Genesis block hash does "+
 			"not appear valid - got %v, want %v", spew.Sdump(hash),
-			spew.Sdump(btcnet.RegressionNetParams.GenesisHash))
+			spew.Sdump(rddnet.RegressionNetParams.GenesisHash))
 	}
 }
 
@@ -76,7 +76,7 @@ func TestRegTestGenesisBlock(t *testing.T) {
 func TestTestNet3GenesisBlock(t *testing.T) {
 	// Encode the genesis block to raw bytes.
 	var buf bytes.Buffer
-	err := btcnet.TestNet3Params.GenesisBlock.Serialize(&buf)
+	err := rddnet.TestNet3Params.GenesisBlock.Serialize(&buf)
 	if err != nil {
 		t.Fatalf("TestTestNet3GenesisBlock: %v", err)
 	}
@@ -90,14 +90,14 @@ func TestTestNet3GenesisBlock(t *testing.T) {
 	}
 
 	// Check hash of the block against expected hash.
-	hash, err := btcnet.TestNet3Params.GenesisBlock.BlockSha()
+	hash, err := rddnet.TestNet3Params.GenesisBlock.BlockSha()
 	if err != nil {
 		t.Fatalf("BlockSha: %v", err)
 	}
-	if !btcnet.TestNet3Params.GenesisHash.IsEqual(&hash) {
+	if !rddnet.TestNet3Params.GenesisHash.IsEqual(&hash) {
 		t.Fatalf("TestTestNet3GenesisBlock: Genesis block hash does "+
 			"not appear valid - got %v, want %v", spew.Sdump(hash),
-			spew.Sdump(btcnet.TestNet3Params.GenesisHash))
+			spew.Sdump(rddnet.TestNet3Params.GenesisHash))
 	}
 }
 
@@ -106,7 +106,7 @@ func TestTestNet3GenesisBlock(t *testing.T) {
 func TestSimNetGenesisBlock(t *testing.T) {
 	// Encode the genesis block to raw bytes.
 	var buf bytes.Buffer
-	err := btcnet.SimNetParams.GenesisBlock.Serialize(&buf)
+	err := rddnet.SimNetParams.GenesisBlock.Serialize(&buf)
 	if err != nil {
 		t.Fatalf("TestSimNetGenesisBlock: %v", err)
 	}
@@ -120,14 +120,14 @@ func TestSimNetGenesisBlock(t *testing.T) {
 	}
 
 	// Check hash of the block against expected hash.
-	hash, err := btcnet.SimNetParams.GenesisBlock.BlockSha()
+	hash, err := rddnet.SimNetParams.GenesisBlock.BlockSha()
 	if err != nil {
 		t.Fatalf("BlockSha: %v", err)
 	}
-	if !btcnet.SimNetParams.GenesisHash.IsEqual(&hash) {
+	if !rddnet.SimNetParams.GenesisHash.IsEqual(&hash) {
 		t.Fatalf("TestSimNetGenesisBlock: Genesis block hash does "+
 			"not appear valid - got %v, want %v", spew.Sdump(hash),
-			spew.Sdump(btcnet.SimNetParams.GenesisHash))
+			spew.Sdump(rddnet.SimNetParams.GenesisHash))
 	}
 }
 
