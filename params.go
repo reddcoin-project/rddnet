@@ -19,8 +19,8 @@ var (
 	bigOne = big.NewInt(1)
 
 	// mainPowLimit is the highest proof of work value a Bitcoin block can
-	// have for the main network.  It is the value 2^224 - 1.
-	mainPowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 224), bigOne)
+	// have for the main network.  It is the value 2^236 - 1.
+	mainPowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 236), bigOne)
 
 	// regressionPowLimit is the highest proof of work value a Bitcoin block
 	// can have for the regression test network.  It is the value 2^255 - 1.
@@ -98,33 +98,34 @@ type Params struct {
 var MainNetParams = Params{
 	Name:        "mainnet",
 	Net:         rddwire.MainNet,
-	DefaultPort: "8333",
+	DefaultPort: "45444",
 
 	// Chain parameters
 	GenesisBlock:           &genesisBlock,
 	GenesisHash:            &genesisHash,
 	PowLimit:               mainPowLimit,
-	PowLimitBits:           0x1d00ffff,
-	SubsidyHalvingInterval: 210000,
+	PowLimitBits:           0x1e0fffff,
 	ResetMinDifficulty:     false,
 
 	// Checkpoints ordered from oldest to newest.
 	Checkpoints: []Checkpoint{
-		{11111, newShaHashFromStr("0000000069e244f73d78e8fd29ba2fd2ed618bd6fa2ee92559f542fdb26e7c1d")},
-		{33333, newShaHashFromStr("000000002dd5588a74784eaa7ab0507a18ad16a236e7b1ce69f00d7ddfb5d0a6")},
-		{74000, newShaHashFromStr("0000000000573993a3c9e41ce34471c079dcf5f52a0e824a81e7f953b8661a20")},
-		{105000, newShaHashFromStr("00000000000291ce28027faea320c8d2b054b2e0fe44a773f3eefb151d6bdc97")},
-		{134444, newShaHashFromStr("00000000000005b12ffd4cd315cd34ffd4a594f430ac814c91184a0d42d2b0fe")},
-		{168000, newShaHashFromStr("000000000000099e61ea72015e79632f216fe6cb33d7899acb35b75c8303b763")},
-		{193000, newShaHashFromStr("000000000000059f452a5f7340de6682a977387c17010ff6e6c3bd83ca8b1317")},
-		{210000, newShaHashFromStr("000000000000048b95347e83192f69cf0366076336c639f9b7228e9ba171342e")},
-		{216116, newShaHashFromStr("00000000000001b4f4b433e81ee46494af945cf96014816a4e2370f11b23df4e")},
-		{225430, newShaHashFromStr("00000000000001c108384350f74090433e7fcf79a606b8e797f065b130575932")},
-		{250000, newShaHashFromStr("000000000000003887df1f29024b06fc2200b55f8af8f35453d7be294df2d214")},
-		{267300, newShaHashFromStr("000000000000000a83fbd660e918f218bf37edd92b748ad940483c7c116179ac")},
-		{279000, newShaHashFromStr("0000000000000001ae8c72a0b0c301f67e3afca10e819efa9041e458e9bd7e40")},
-		{300255, newShaHashFromStr("0000000000000000162804527c6e9b9f0563a280525f9d08c12041def0a0f3b2")},
-		{319400, newShaHashFromStr("000000000000000021c6052e9becade189495d1c539aa37c58917305fd15f13b")},
+		{10,     newShaHashFromStr("a198c38a77555a9fbff0b147bf7ce0660416d6abdaa86adaa3a9be97092592ed")},
+		{1000,   newShaHashFromStr("9d849e078deac30d58372db898318186cf5073a7f0b109b4776393b21b7b4e5a")},
+		{2000,   newShaHashFromStr("4674c50137c1d9bf47d96dee5e8c38c41895d494a0bb71e243d1c8a6c805e1f7")},
+		{3000,   newShaHashFromStr("0deff246b8dfc102ccdbc3a306649be82c441e1da0fba8ca1075cf6b5d7f3c01")},
+		{4000,   newShaHashFromStr("ad880a4c23d511f04311e98ee77f5163e54cd92f80433e9f3bd6bc2261d50592")},
+		{5000,   newShaHashFromStr("3f673ef045f4a7d71fb841ce96ed190b20569182bd3dfe628527ec3a7934d08f")},
+		{6000,   newShaHashFromStr("1222056e58dce70c0a6638e07415bd6190fa5ccdd6d5e7f6af68abb30ebd4eb8")},
+		{6150,   newShaHashFromStr("e221b12cf8b0c264697e9bb3c9c9f0f7ada5f2736e054cbd53b94852908cdbd3")},
+		{10000,  newShaHashFromStr("35d5f9cbd94c15771d5ebebf55ea4bfc649c473c0a868fe4d1832f5b45bd5d0c")},
+		{15000,  newShaHashFromStr("87a8c4289e661720095f2ab6a077151bc84b9615a53c5e7207ba1c20418bd178")},
+		{20000,  newShaHashFromStr("6a86a4cbbcea694027591ba416ae3831b4f3f9aa3cc6a0a1b5627f920dd765bb")},
+		{44878,  newShaHashFromStr("d81a3724a81b78e762821d16bfe23565576905685b2c072ea9a3fa7d36dbad8b")},
+		{45189,  newShaHashFromStr("d10b5da162b922d3cf09c44ea3d533a203c9ab1c442015d7e72f21062d20aeb4")},
+		{45239,  newShaHashFromStr("e14dba7c7d1ed1a7566e23b0ca0989e3e26099b7beaa673d324001d1291223f7")},
+		{114834, newShaHashFromStr("dc5c776ca006c6d40e48c90aeeb43bf6493de589e28f779b486e64aa3403344a")},
+		{184000, newShaHashFromStr("e22e6b027cd49cd9aa2ba6df0e0c264c2eed5656b1fa39052c8235d52f2b04d6")},
+		{244999, newShaHashFromStr("0b7bb56edfae2f2f1e71ac39daab16614fccf1a1e02c58d4169521d76d880b42")},		
 	},
 
 	// Reject version 1 blocks once a majority of the network has upgraded.
@@ -144,9 +145,9 @@ var MainNetParams = Params{
 	RelayNonStdTxs: false,
 
 	// Address encoding magics
-	PubKeyHashAddrID: 0x00, // starts with 1
+	PubKeyHashAddrID: 0x3d, // starts with R
 	ScriptHashAddrID: 0x05, // starts with 3
-	PrivateKeyID:     0x80, // starts with 5 (uncompressed) or K (compressed)
+	PrivateKeyID:     0xbd, // starts with V (compressed)
 
 	// BIP32 hierarchical deterministic extended key magics
 	HDPrivateKeyID: [4]byte{0x04, 0x88, 0xad, 0xe4}, // starts with xprv
@@ -154,7 +155,7 @@ var MainNetParams = Params{
 
 	// BIP44 coin type used in the hierarchical deterministic path for
 	// address generation.
-	HDCoinType: 0,
+	HDCoinType: 4,
 }
 
 // RegressionNetParams defines the network parameters for the regression test
@@ -170,7 +171,6 @@ var RegressionNetParams = Params{
 	GenesisHash:            &regTestGenesisHash,
 	PowLimit:               regressionPowLimit,
 	PowLimitBits:           0x207fffff,
-	SubsidyHalvingInterval: 150,
 	ResetMinDifficulty:     true,
 
 	// Checkpoints ordered from oldest to newest.
@@ -219,13 +219,10 @@ var TestNet3Params = Params{
 	GenesisHash:            &testNet3GenesisHash,
 	PowLimit:               testNet3PowLimit,
 	PowLimitBits:           0x1d00ffff,
-	SubsidyHalvingInterval: 210000,
 	ResetMinDifficulty:     true,
 
 	// Checkpoints ordered from oldest to newest.
-	Checkpoints: []Checkpoint{
-		{546, newShaHashFromStr("000000002a936ca763904c3c35fce2f3556c559c0214345d31b1bcebf76acb70")},
-	},
+	Checkpoints: nil,
 
 	// Reject version 1 blocks once a majority of the network has upgraded.
 	// 75% (75 / 100)
@@ -274,7 +271,6 @@ var SimNetParams = Params{
 	GenesisHash:            &simNetGenesisHash,
 	PowLimit:               simNetPowLimit,
 	PowLimitBits:           0x207fffff,
-	SubsidyHalvingInterval: 210000,
 	ResetMinDifficulty:     true,
 
 	// Checkpoints ordered from oldest to newest.
